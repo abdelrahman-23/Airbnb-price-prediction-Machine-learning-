@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Airbnb Price Prediction</title>
+    <link rel = "icon" href ="pngfind.com-airbnb-logo-png-133450.png" type = "image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='icon/pngfind.com-airbnb-logo-png-133450.png') }}" type = "image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<!-- CSS only -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/select2.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/material-design-iconic-font.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+</head>
+<body>
+<div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+<div class="login">
+<form action="{{ url_for('predict')}}"method="post">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h1 class="title1" align="center">Welcome to Airbnb price predication </h1>
+                    <h4 class="title4">The expected price will appear here after you finish filling out the form</h4>
+                                                {{ prediction_text }}
+                    <br>
+                    <h2 class="title"><br>Prediction Form : </h2>
+                    <form method="POST">
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Host identity verified </label>
+                                    <p class="label2">(unconfirmed --> 0 <br>, verified --> 1)</p>
+                                    <input class="input--style-4" type="number" name="host_identity_verified" required="required" />
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Neighbourhood group</label>
+                                    <p class="label2">(Brooklyn --> 1 , Manhattan --> 2 , Bronx --> 0 , Queens --> 3 , Staten Island --> 4 )</p>
+                                    <input class="input--style-4" type="number" name="neighbourhood_group"required="required" />
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Instant bookable </label>
+                                    <p class="label2">(False --> 0 , True --> 1)</p>
+
+                                    <input class="input--style-4" type="number" name="instant_bookable" required="required" />
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Cancellation policy</label>
+                                    <p class="label2">(moderate --> 1 , strict --> 2 , flexible --> 0)</p>
+
+                                    <input class="input--style-4" type="number" name="cancellation_policy" required="required" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Room type</label>
+                                    <p class="label2">(Hotel room --> 1 , Private room --> 2 , Entire home/apt --> 0 , Shared room --> 3)</p>
+                                    <input class="input--style-4" type="number" name="room type" required="required" />
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Construction year</label>
+                                    <p class="label2">(In which year it<br>
+                                        was built)</p>
+                                    <input class="input--style-4" type="text" name="Construction year" required="required" />
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Minimum nights</label>
+                                    <p class="label2">(minimum number of night stay for the listing)</p>
+                                    <input class="input--style-4" type="text" name="minimum nights" required="required" />
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Number of reviews</label>
+                                    <p class="label2">(The number of reviews <br>the listing has)</p>
+                                    <input class="input--style-4" type="text" name="number of reviews" required="required" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Reviews per month</label>
+                                    <p class="label2">(Average number of reviews per month)</p>
+
+                                    <input class="input--style-4" type="text" name="reviews per month" required="required" />
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Review rate number</label>
+                                    <p class="label2">(Total average number of reviews)</p>
+
+                                    <input class="input--style-4" type="text" name="review rate number" required="required" />
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Calculated host listings count</label>
+                                    <p class="label2">(Amount of <br>guests)</p>
+                                    <input class="input--style-4" type="text" name="calculated host listings count" required="required" />
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Availability 365</label>
+                                    <p class="label2">(Number of days that room available in the year)</p>
+                                    <input class="input--style-4" type="text" name="availability 365" required="required" />
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <label class="label">Service fee</label>
+                                    <p class="label2">(Airbnb profit)</p>
+                                    <input class="input--style-4" type="text" name="service fee" required="required" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-t-15">
+                            <button type="submit" class="btn btn--radius-2 btn--blue">Predict</button>
+                            <br>
+                            <br>
+
+                            <h2 class="title23">Powered by : Abdelrahman Raslan </h2>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</form>
+</div>
+</div>
+</body>
+</html>
